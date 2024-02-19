@@ -75,7 +75,8 @@ div.stMarkdown {
 }
 </style>
 """, unsafe_allow_html=True)
-
+st.markdown("""
+---
 **Note:**
 
 * Enter question and type enter to search
