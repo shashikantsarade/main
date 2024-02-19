@@ -1,6 +1,7 @@
 import streamlit as st
 import google.generativeai as genai
-import ChatGoogleGenerativeAI from genai
+from genai import ChatGoogleGenerativeAI
+
 # Define custom CSS styles
 custom_css = """
 <style>
