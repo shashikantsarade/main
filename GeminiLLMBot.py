@@ -1,59 +1,53 @@
 import streamlit as st
+import google.generativeai as genai
 
+# Configure Gemini API key
+genai.configure(api_key="YOUR_API_KEY")
 
-# Define custom CSS styles
-custom_css = """
-<style>
-body {
-    font-family: Arial, sans-serif;
+# Set up model configuration
+generation_config = {
+    "temperature": 0.9,
+    "top_p": 1,
+    "top_k": 1,
+    "max_output_tokens": 2048,
 }
-.container {
-    max-width: 800px;
-    margin: auto;
-    padding: 20px;
-}
-.user-message {
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-.bot-message {
-    background-color: #e2f3ff;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-</style>
-"""
+safety_settings = [
+    {
+        "category": "HARM_CATEGORY_HARASSMENT",
+        "threshold": "BLOCK_MEDIUM_AND_ABOVE"
+    },
+    # ... other safety settings
+]
+model = genai.GenerativeModel(
+    model_name="gemini-1.0-pro",
+    generation_config=generation_config,
+    safety_settings=safety_settings
+)
 
-# Inject custom CSS
-st.markdown(custom_css, unsafe_allow_html=True)
+# Initialize chat history
+convo = model.start_chat(history=[
+    {"role": "user", "parts": ["date?"]},
+    {"role": "model", "parts": ["March 8, 2023"]},
+])
 
-# Rest of your Streamlit app
-from google.generativeai import ChatGoogleGenerativeAI
+# Create Streamlit app layout
+st.title("Chat with Gemini Pro")
 
-# Set up authentication (replace with your API key)
-api_key = "AIzaSyCkImAMySg8CswcGujDsDLys3M5LT8Ljcc"
-llm = ChatGoogleGenerativeAI(model_name="gemini-pro")
+# User input field with improved clarity and placeholder text
+user_input = st.text_input("Ask a question or provide a prompt:", placeholder="Type your message here")
 
-def main():
-    st.title("Gemini Pro Bot")
-    chat_history = st.session_state.get("chat_history", [])
-    user_input = st.text_input("Ask me anything...")
+if user_input:
+    convo.send_message(user_input)
+    response = convo.last.text
+    st.write(f"Gemini Pro: {response}")
 
-    if user_input:
-        chat_history.append({"user": user_input})
-        response = llm.invoke(inputs=user_input)
-        chat_history.append({"bot": response.content})
+# Enhance clarity and visual appeal with markdown formatting
+st.markdown("""
+---
 
-    st.session_state["chat_history"] = chat_history
+**Note:**
 
-    for message in chat_history:
-        if "user" in message:
-            st.markdown(f'<div class="user-message">{message["user"]}</div>', unsafe_allow_html=True)
-        else:
-            st.markdown(f'<div class="bot-message">{message["bot"]}</div>', unsafe_allow_html=True)
-
-if __name__ == "__main__":
-    main()
+* Replace `YOUR_API_KEY` with your actual Gemini API key.
+* Customize the configuration and safety settings as needed.
+* Explore Streamlit's widgets (e.g., buttons, sliders) for further interaction.
+""")
