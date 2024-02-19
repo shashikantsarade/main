@@ -33,7 +33,7 @@ st.markdown(custom_css, unsafe_allow_html=True)
 from google.generativeai import ChatGoogleGenerativeAI
 
 # Set up authentication (replace with your API key)
-api_key = "YOUR_API_KEY"
+api_key = "AIzaSyCkImAMySg8CswcGujDsDLys3M5LT8Ljcc"
 llm = ChatGoogleGenerativeAI(model_name="gemini-pro")
 
 def main():
