@@ -31,23 +31,53 @@ convo = model.start_chat(history=[
 ])
 
 # Create Streamlit app layout
-st.title("Chat with Gemini Pro")
+st.title("Search your doubts...")
 
 # User input field with improved clarity and placeholder text
 user_input = st.text_input("Ask a question or provide a prompt:", placeholder="Type your message here")
 
+# Create Streamlit app layout
+st.title("तुमची संदेहं शोधा...")
+
+# User input field with improved clarity and placeholder text
+user_input = st.text_input("एक प्रश्न विचारा किंवा प्रोंप्ट प्रदान करा:", placeholder="येथे तुमचा संदेश टाइप करा")
+
 if user_input:
-    convo.send_message(user_input)
-    response = convo.last.text
+    # convo.send_message(user_input)
+    # response = convo.last.text
+    response = "आपला उत्तर येथे आहे"
     st.write(f"Gemini Pro: {response}")
 
-# Enhance clarity and visual appeal with markdown formatting
+# Add custom CSS styling
 st.markdown("""
----
+<style>
+/* Custom CSS for input */
+div.stTextInput>div>div>div>input {
+    background-color: #f0f0f0 !important;
+    color: #333 !important;
+    border-radius: 5px;
+    border: 1px solid #ccc !important;
+    padding: 0.5rem;
+}
+
+/* Custom CSS for output */
+div.stMarkdown {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
 
 **Note:**
 
-* Replace `YOUR_API_KEY` with your actual Gemini API key.
-* Customize the configuration and safety settings as needed.
-* Explore Streamlit's widgets (e.g., buttons, sliders) for further interaction.
-""")
+* Enter question and type enter to search
+* Built on Gemini model
+* @ShashiSar""")
