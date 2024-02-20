@@ -42,7 +42,7 @@ if user_input:
 
     with st.spinner('Thinking...'):
         response = convo.last.text
-        response_placeholder.write(f"Gemini Pro: {response}", container=True)
+        response_placeholder.write(f"The response: {response}", container=True)
 
 
 # Enhance clarity and visual appeal with markdown formatting
@@ -51,7 +51,6 @@ st.markdown("""
 
 **Note:**
 
-* THIS IS GEMINI AI MODEL DEVELOPED ON OPEN SOURCE PLATFORM
-* SHASHIKANT SARADE
-* 2024
+ THIS IS GEMINI AI MODEL DEVELOPED ON OPEN SOURCE PLATFORM
+ SHASHIKANT SARADE
 """)
