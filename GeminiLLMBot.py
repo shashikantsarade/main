@@ -51,7 +51,7 @@ st.markdown("""
 
 **Note:**
 
-* Replace `YOUR_API_KEY` with your actual Gemini API key.
-* Customize the configuration and safety settings as needed.
-* Explore Streamlit's widgets (e.g., buttons, sliders) for further interaction.
+* THIS IS GEMINI AI MODEL DEVELOPED ON OPEN SOURCE PLATFORM
+* SHASHIKANT SARADE
+* 2024
 """)
