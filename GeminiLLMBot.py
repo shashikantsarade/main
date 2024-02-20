@@ -38,8 +38,12 @@ user_input = st.text_input("Ask a question or provide a prompt:", placeholder="T
 
 if user_input:
     convo.send_message(user_input)
-    response = convo.last.text
-    st.write(f"Gemini Pro: {response}")
+    response_placeholder = st.empty()  # Placeholder for the response
+
+    with st.spinner('Thinking...'):
+        response = convo.last.text
+        response_placeholder.write(f"Gemini Pro: {response}", container=True)
+
 
 # Enhance clarity and visual appeal with markdown formatting
 st.markdown("""
