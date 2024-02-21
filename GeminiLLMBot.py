@@ -46,9 +46,10 @@ st.title("Chat with Gemini Pro")
 
 # User input field with improved clarity and placeholder text
 user_input = st.text_input("Ask a question or provide a prompt:", placeholder="Type your message here")
-user_input=user_input+" response must be in marathi"
+
 
 if user_input:
+    user_input=user_input+". This is the prompt. Now try to find respone for given question and response must be in marathi"
     convo.send_message(user_input)
     response_placeholder = st.empty()  # Placeholder for the response
 
@@ -64,5 +65,5 @@ st.markdown("""
 **Note:**
 
  THIS IS GEMINI AI MODEL DEVELOPED ON OPEN SOURCE PLATFORM
- *SHASHIKANT*
+ *SHASHIKANT S*
 """)
