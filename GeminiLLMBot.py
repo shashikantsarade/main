@@ -49,8 +49,6 @@ user_input = st.text_input("Ask a question or provide a prompt:", placeholder="T
 
 
 if user_input:
-    user_input=user_input+". This is the prompt. Now try to find respone for given question and response must be in marathi"
-    print(user_input)
     convo.send_message(user_input)
     response_placeholder = st.empty()  # Placeholder for the response
 
